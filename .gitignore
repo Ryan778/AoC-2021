@@ -1,0 +1,2 @@
+# don't leak session cookies
+.env
