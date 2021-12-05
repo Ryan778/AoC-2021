@@ -126,6 +126,8 @@ async function getTestInput(day, type) {
 
 async function runCode(day, input) {
   let inputArr = input.split('\n'); 
+  let inputArr2 = [...inputArr]; 
+
   console.log(`Input loaded: ${input.length} chars, ${inputArr.length} lines`);
   let firstLine = input.slice(0, input.indexOf('\n')); 
   console.log(`First line: ${firstLine.yellow} ${`(${firstLine.length} char(s))`.green}`); 
@@ -151,7 +153,7 @@ async function runCode(day, input) {
   
   console.log(`<Task 2>`.cyan.underline); 
   
-  let gold = script.goldStar(inputArr, input); 
+  let gold = script.goldStar(inputArr2, input); 
   console.log(`${'Output:'.cyan} ${(typeof gold === 'string' || typeof gold === 'number') ? gold.toString().magenta : 'null'}`); 
 
   if (typeof gold === 'string' || typeof gold === 'number') {
