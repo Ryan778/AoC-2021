@@ -4,6 +4,7 @@
   "description": "",
   "main": "base.js",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "colors": "^1.4.0",
     "dotenv": "^10.0.0",
     "node-fetch": "^2.6.6"

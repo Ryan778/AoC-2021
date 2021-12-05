@@ -14,6 +14,16 @@ exports.silverStar = function(inp, inpStr) {
 
 // Second part
 exports.goldStar = function(inp, inpStr) {
-  console.log('yay')
-  return 3; 
+inp = inp.map(r => parseInt(r)); 
+
+  let count = -1, prev = -1; 
+  for (let i = 2; i < inp.length; i++) {
+    let sum = inp[i] + inp[i-1] + inp[i-2]; 
+    if (sum > prev) {
+      count ++; 
+    }
+    prev = sum; 
+  }
+
+  return count; 
 }; 

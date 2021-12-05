@@ -7,6 +7,18 @@ exports.array = {
    */
   new: (size=1, val) => {
     return new Array(size).fill(val); 
+  }, 
+  /**
+   * Returns the sum of all integers in an array (or nested array). Ignores non-number values.
+   * @param {array} input 
+   * @returns number
+   */
+  sum: function (input) {
+    input = input.flat(Infinity); // Flatten array
+    return input.reduce((a, c) => {
+      if (typeof c === 'number') return a + c; 
+      return a; 
+    }, 0); 
   }
 }
 
@@ -25,6 +37,15 @@ exports.string = {
       nextInd = input.indexOf(substr);
     }
     return res; 
+  }, 
+  /**
+   * Removes leading spaces, trailing spaces, and extra spaces (2+) from a string
+   * @param {string} input - input string
+   * @returns {string}
+   */
+  fullTrim: (input) => {
+    input = input.replace(/\ \ +/g, ' '); 
+    return input.trim(); 
   }
 }
 
