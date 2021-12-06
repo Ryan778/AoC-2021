@@ -13,7 +13,7 @@ console.log(`[Advent of Code]`.green.bold);
 let pnum = process.argv[2] ? parseInt(process.argv[2]) : 0; 
 
 if (pnum === 0) {
-  let day = new Date(Date.now() + (7200000)).getDate(); 
+  let day = new Date(Date.now() + (7500000)).getDate(); 
   console.log(`Day "0" provided, using today's day (${day})`.cyan)
   pnum = day;
 }

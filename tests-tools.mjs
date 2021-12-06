@@ -1,4 +1,5 @@
 import rl from './rl-tools.js'; 
+import colors from 'colors';
 import { strict as assert } from 'assert';
 
 let passed = 0, total = 0; 
@@ -7,6 +8,7 @@ function test(func, args, expected) {
     assert.deepEqual(func(...args), expected);
     passed ++; 
   } catch (err) {
+    console.error(`[!] Function "${func.name}" failed assertion.`.red);
     console.error(err); 
   }
   total ++; 
@@ -17,7 +19,13 @@ test(rl.array.new, [5, 0], [0, 0, 0, 0, 0]);
 test(rl.array.new, [4, 'a'], ['a', 'a', 'a', 'a']); 
 
 test(rl.array.sum, [[1, 2, 'aaa', 3, 4, 'b', 5, 'c']], 15); 
-test(rl.array.sum, [[1, 2, ['aaa', 3, [4, 'b']], 5, [['c']]]], 15); 
+test(rl.array.sum, [[1, 2, ['aaa', 3, [4, 'b']], 5, [['c']]]], 15);
+
+test(rl.array.range, [0, 5], [0, 1, 2, 3, 4]); 
+test(rl.array.range, [6, 3, true], [6, 5, 4, 3]); 
+
+test(rl.array.transpose, [[[1, 2], [3, 4], [5, 6]]], [[1, 3, 5], [2, 4, 6]]); 
+test(rl.array.transpose, [[[1, 2, 3, 4], [5, 6], [7]]], [[1, 5, 7], [2, 6], [3], [4]]); 
 
 // Number tests
 test(rl.number.isPrime, [97], true); 

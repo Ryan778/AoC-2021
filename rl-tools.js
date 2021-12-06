@@ -19,6 +19,44 @@ exports.array = {
       if (typeof c === 'number') return a + c; 
       return a; 
     }, 0); 
+  },
+  /**
+   * Returns a range of integers from [start, end). Can go backwards. 
+   * @param {number} start - starting value
+   * @param {number} end - ending value
+   * @param {boolean} inclusive=false - whether to include the end value or not 
+   */ 
+  range: function (start, end, inclusive=false) {
+    let flip = false; 
+    if (start === end) {
+      return [start]; 
+    } else if (start > end) {
+      flip = true; 
+      let t = end; 
+      end = start; 
+      start = t; 
+    }
+    let out = []; 
+    if (inclusive) end ++; 
+    for (let i = start; i < end; i++) {
+      out.push(i); 
+    }
+    return flip ? out.reverse() : out; 
+  }, 
+  /**
+   * Returns a NEW 2d array that's the transposed version of the original. 
+   * @param {array} input - 2d array of values
+   */
+  transpose: (input) => {
+    let dup = [...input]; 
+    let out = []; 
+    for (let i = 0; i < dup.length; i++) {
+      for (let j = 0; j < dup[i].length; j++) {
+        if (!out[j]) out[j] = []; 
+        out[j][i] = dup[i][j]; 
+      }
+    }
+    return out; 
   }
 }
 
