@@ -90,7 +90,7 @@ async function fetchTestInput(day) {
   }
 
   return {
-    input: sampleInput, 
+    input: sampleInput.trim(), 
     answers: [testOutput1, testOutput2]
   }
   // console.log(sampleInput, testOutput1, testOutput2); 
@@ -109,7 +109,7 @@ async function getTestInput(day, type) {
     let rawData = fs.readFileSync(path.join('inputs', `${day}t.txt`), 'utf-8'); 
     let fl = rawData.slice(0, rawData.indexOf('\n')); // first line
     data = {
-      input: rawData.slice(rawData.indexOf('\n') + 1), 
+      input: rawData.slice(rawData.indexOf('\n') + 1).trim(), 
       answers: fl.split(';')
     }; 
     if (data.answers[1] === '<n/a>') {
@@ -125,6 +125,8 @@ async function getTestInput(day, type) {
 }
 
 async function runCode(day, input) {
+  input = input.trim(); // Remove whitespace if there is any
+
   let inputArr = input.split('\n'); 
   let inputArr2 = [...inputArr]; 
 
