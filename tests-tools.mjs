@@ -23,9 +23,15 @@ test(rl.array.sum, [[1, 2, ['aaa', 3, [4, 'b']], 5, [['c']]]], 15);
 
 test(rl.array.range, [0, 5], [0, 1, 2, 3, 4]); 
 test(rl.array.range, [6, 3, true], [6, 5, 4, 3]); 
+test(rl.array.range, [6, 3, false], [6, 5, 4]); 
 
 test(rl.array.transpose, [[[1, 2], [3, 4], [5, 6]]], [[1, 3, 5], [2, 4, 6]]); 
 test(rl.array.transpose, [[[1, 2, 3, 4], [5, 6], [7]]], [[1, 5, 7], [2, 6], [3], [4]]); 
+
+test(rl.array.duplicates, [[0, 1, 2, 3], [2, 3, 4, 5]], [2, 3]); 
+test(rl.array.duplicates, [[0, 3, 1, 2, 5], [2, 3, 5, 6, 1]], [2, 3, 5, 1]); 
+
+test(rl.array.diff, [[0, 1, 2, 3], [2, 3, 4, 5]], [0, 1]); 
 
 // Number tests
 test(rl.number.isPrime, [97], true); 

@@ -29,15 +29,15 @@ exports.array = {
   range: function (start, end, inclusive=false) {
     let flip = false; 
     if (start === end) {
-      return [start]; 
+      return inclusive ? [start] : []; 
     } else if (start > end) {
       flip = true; 
       let t = end; 
-      end = start; 
-      start = t; 
+      end = start + 1; 
+      start = t + 1; 
     }
     let out = []; 
-    if (inclusive) end ++; 
+    if (inclusive) flip ? start -- : end ++; 
     for (let i = start; i < end; i++) {
       out.push(i); 
     }
@@ -57,6 +57,25 @@ exports.array = {
       }
     }
     return out; 
+  }, 
+  /**
+   * Returns a new array listing all values shared between both input arrays, that is, the intersection of inp1 and inp2. 
+   * Does not modify either input array. 
+   * @param {array} inp1 - first array
+   * @param {array} inp2 - second array
+   * @returns {array}
+   */
+  duplicates: (inp1, inp2) => {
+    return inp1.concat(inp2).filter((e, i, a) => a.indexOf(e) !== i); 
+  }, 
+  /**
+   * Returns the difference between inp1 and inp2, that is, an array with every elemnt in inp1 that is NOT in inp2. 
+   * @param {array} inp1 - first array
+   * @param {array} inp2 - second array
+   * @returns {array}
+   */
+  diff: (inp1, inp2) => {
+    return inp1.filter((e) => inp2.indexOf(e) === -1); 
   }
 }
 

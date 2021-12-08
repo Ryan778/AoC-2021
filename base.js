@@ -132,7 +132,7 @@ async function runCode(day, input) {
 
   console.log(`Input loaded: ${input.length} chars, ${inputArr.length} lines`);
   let firstLine = input.slice(0, input.indexOf('\n')); 
-  console.log(`First line: ${firstLine.yellow} ${`(${firstLine.length} char(s))`.green}`); 
+  console.log(`First line: ${firstLine.length < 512 ? firstLine.yellow : (firstLine.slice(0, 512) + '...').yellow} ${`(${firstLine.length} char(s))`.green}`); 
 
   let script = require(`./${day}.js`); 
   console.log(`<Task 1>`.cyan.underline); 
