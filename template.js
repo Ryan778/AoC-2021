@@ -18,8 +18,6 @@ exports.silverStar = function(inpArr, inpStr) {
   return  ;
 }; 
 
-exports.silverStar(); 
-
 // Second part
 exports.goldStar = function(inpArr, inpStr) {
   
