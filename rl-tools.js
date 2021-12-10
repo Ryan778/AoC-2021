@@ -9,7 +9,7 @@ exports.array = {
     return new Array(size).fill(val); 
   }, 
   /**
-   * Returns the sum of all integers in an array (or nested array). Ignores non-number values.
+   * Returns the sum of all numbers in an array (or nested array). Ignores non-numerical values.
    * @param {array} input 
    * @returns number
    */
@@ -19,6 +19,18 @@ exports.array = {
       if (typeof c === 'number') return a + c; 
       return a; 
     }, 0); 
+  },
+  /**
+   * Returns the product of all numbers in an array (or nested array). Ignores non-numerical values.
+   * @param {array} input 
+   * @returns number
+   */
+  product: function (input) {
+    input = input.flat(Infinity); // Flatten array
+    return input.reduce((a, c) => {
+      if (typeof c === 'number') return a * c; 
+      return a; 
+    }, 1); 
   },
   /**
    * Returns a range of integers from [start, end). Can go backwards. 
