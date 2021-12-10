@@ -1,4 +1,9 @@
-// Day #
+// Day 9
+
+/** Comments: 
+ * Lost about three precious minutes trying to unbreak my template/base infrastructure today. It turns out I broke it earlier when trying to make some improvements and left debugging/testing code in here, oops. 
+ * Other than that, today went quite smoothly. Learned about array destructuring and the optional chaining operator after finishing today's challenges, which should help with speed going forward. 
+ */
 
 const rl = require('./rl-tools'); 
 // Important, commonly used functions

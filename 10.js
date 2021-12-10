@@ -1,5 +1,10 @@
 // Day 10
 
+/** Comments: 
+ * The variable named queue is actually a stack. Oops. Had the idea of a stack in my head, but proceeded to write down queue, and then confused myself by treating the queue like a queue and wondering why it wasn't working :)
+ * Overall not too terrible, making that mistake three time(!) before realizing why I was making that mistake did cost me several minutes unfortunately. 
+*/ 
+
 const rl = require('./rl-tools'); 
 // Important, commonly used functions
 const range = rl.array.range; 
