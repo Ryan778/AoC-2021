@@ -11,9 +11,7 @@ exports.silverStar = function(inpArr, inpStr) {
   // let input = inpStr.split(','); // If first line is input
   // input = inpArr.map(r => parseInt(r)); // Convert entries to ints
   
-  for (let i of range(6, 0)) {
-    console.log(i)
-  }
+  
 
   return  ;
 }; 
