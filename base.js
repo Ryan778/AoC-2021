@@ -8,6 +8,14 @@ const path = require('path');
 const colors = require('colors'); 
 const cheerio = require('cheerio'); 
 
+const benchmark = process.argv[3] === '1'; 
+let benchmarkTimes = []; 
+
+function printBenchmark(str, i) {
+  let times = benchmarkTimes[i]; 
+  console.log(`${str} ${(times[0]*1000 + times[1]/1e6).toFixed(4).magenta} ${'ms'.magenta}`); 
+}
+
 console.log(`[Advent of Code]`.green.bold); 
 
 let pnum = process.argv[2] ? parseInt(process.argv[2]) : 0; 
@@ -137,7 +145,10 @@ async function runCode(day, input) {
   let script = require(`./${day}.js`); 
   console.log(`<Task 1>`.cyan.underline); 
   
+  if (benchmark) benchmarkTimes[0] = process.hrtime(); 
   let silver = script.silverStar(inputArr, input); 
+  if (benchmark) benchmarkTimes[0] = process.hrtime(benchmarkTimes[0]); 
+  
   console.log(`${'Output:'.cyan} ${(typeof silver === 'string' || typeof silver === 'number') ? silver.toString().magenta : 'null'}`); 
 
   let testInput = await getTestInput(day, 0); 
@@ -155,7 +166,9 @@ async function runCode(day, input) {
   
   console.log(`<Task 2>`.cyan.underline); 
   
+  if (benchmark) benchmarkTimes[1] = process.hrtime(); 
   let gold = script.goldStar(inputArr2, input); 
+  if (benchmark) benchmarkTimes[1] = process.hrtime(benchmarkTimes[1]); 
   console.log(`${'Output:'.cyan} ${(typeof gold === 'string' || typeof gold === 'number') ? gold.toString().magenta : 'null'}`); 
 
   if (typeof gold === 'string' || typeof gold === 'number') {
@@ -170,5 +183,13 @@ async function runCode(day, input) {
     }
   } else {
     console.log(`${'[OK]'.yellow} ${'Test Case Skipped'.cyan} (No Output)`);
+  }
+
+  if (benchmark) {
+    console.log('\n[Benchmark]'.yellow);
+    printBenchmark('Part 1 (Silver)', 0);
+    printBenchmark('Part 2 (Gold)  ', 1);
+    benchmarkTimes[2] = [benchmarkTimes[0][0] + benchmarkTimes[1][0], benchmarkTimes[0][1] + benchmarkTimes[1][1]];
+    printBenchmark('Total Time     '.cyan, 2);
   }
 }

@@ -19,24 +19,20 @@
 
   //  if (input.length > 10) return 1; 
    
-   let pathsObj = {}; 
+   let paths = {}; 
    for (let i of input) {
     let [s, f] = i.split('-'); 
-    if (pathsObj[s]) {
-      pathsObj[s].push(f); 
+    if (paths[s]) {
+      paths[s].push(f); 
     } else {
-      pathsObj[s] = [f]; 
+      paths[s] = [f]; 
     }
-    if (pathsObj[f]) {
-      pathsObj[f].push(s); 
+    if (paths[f]) {
+      paths[f].push(s); 
     } else {
-      pathsObj[f] = [s]; 
+      paths[f] = [s]; 
     }
-   }
-
-   let paths = new Map(); 
-   for (let key of Object.keys(pathsObj)) {
-     paths.set(key, pathsObj[key].sort()); 
+    
    }
 
    let tr = new Set(); 
@@ -47,7 +43,7 @@
       return; 
     }
 
-    let ar = paths.get(cur); 
+    let ar = paths[cur]; 
     chain = chain + (`(${cur})`);
     // console.log(chain, cur); 
     for (let p of ar) {
